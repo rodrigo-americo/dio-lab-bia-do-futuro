@@ -66,7 +66,7 @@
 
 ## Link do Vídeo
 
-🎥 https://drive.google.com/file/d/1zkdIdTIiQ82tIemzr3JIorRCbMYpRlKW/view?usp=sharing
+🎥 https://drive.google.com/file/d/1xQ0MWLxsNdUSYd1E5FNG_V6sErqDenG3/view?usp=sharing
 
 > Confirme que o compartilhamento do arquivo no Drive está como **"Qualquer pessoa com o link"**
 > para o avaliador conseguir abrir.
