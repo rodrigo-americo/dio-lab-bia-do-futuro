@@ -1,0 +1,23 @@
+{
+  "descricao": "Persona fictícia usada nos testes do CarreiraTron para manter as conversas consistentes. Pessoa inventada para o Lab DIO — não corresponde a ninguém real.",
+  "atualizado_em": "2026-08-29",
+  "perfil": {
+    "nome_ficticio": "Sam",
+    "situacao_atual": "Trabalha em atendimento ao cliente, sem experiência com programação",
+    "objetivo": "Migrar de carreira para uma primeira vaga em tecnologia em cerca de 1 ano",
+    "interesses": ["Gosta de resolver problemas de lógica", "Gosta de organização e de encontrar padrões", "Curiosidade por dados e planilhas"],
+    "aversao": ["Pouco interesse em design visual e layout"],
+    "tempo_disponivel_semana_horas": 10,
+    "melhores_horarios": ["Noite em dias de semana", "Manhã de sábado"],
+    "conhecimento_atual": {
+      "logica_de_programacao": "básico (fez um curso introdutório curto)",
+      "linguagens": [],
+      "sql": "nenhum",
+      "git": "nenhum",
+      "ingles": "leitura intermediária, fala básica"
+    },
+    "restricoes": ["Orçamento curto para cursos pagos", "Computador modesto, mas suficiente"],
+    "trilha_provavel_por_afinidade": "dados",
+    "observacao_para_o_agente": "Sam ainda está decidindo a trilha. O agente deve ajudar a comparar opções com base nos interesses declarados, sem empurrar uma escolha."
+  }
+}

@@ -1,0 +1,81 @@
+{
+  "descricao": "Trilhas de carreira em tecnologia usadas pelo CarreiraTron. Dados fictícios e genéricos, criados para o Lab DIO. Não representam nenhuma empresa ou pessoa real.",
+  "atualizado_em": "2026-08-29",
+  "trilhas": [
+    {
+      "id": "front-end",
+      "nome": "Front-end (desenvolvimento web)",
+      "resumo": "Construção da interface que o usuário vê e usa no navegador.",
+      "combina_com": "Quem gosta de layout, de ver resultado visual rápido e de detalhes de experiência de uso.",
+      "pre_requisitos": ["Lógica de programação básica", "Noções de como a web funciona (cliente/servidor)"],
+      "habilidades_chave": ["HTML", "CSS", "JavaScript", "Um framework de componentes (ex.: React)", "Versionamento com Git", "Acessibilidade e responsividade"],
+      "nao_e_sobre": ["Configurar servidores de produção", "Modelagem pesada de banco de dados"],
+      "tempo_estimado_fundamentos_horas": 120,
+      "primeiros_passos": [
+        "Aprender HTML e CSS montando 2 ou 3 páginas estáticas",
+        "Aprender JavaScript e refazer as páginas com interatividade",
+        "Estudar um framework de componentes depois que o JavaScript estiver firme"
+      ]
+    },
+    {
+      "id": "back-end",
+      "nome": "Back-end (desenvolvimento de servidor)",
+      "resumo": "Regras de negócio, APIs, integração com banco de dados e serviços.",
+      "combina_com": "Quem gosta de resolver problemas de lógica, pensar em dados e no que acontece 'por trás' da tela.",
+      "pre_requisitos": ["Lógica de programação básica", "Uma linguagem de programação (ex.: Python, Java, Node.js)"],
+      "habilidades_chave": ["Uma linguagem de servidor", "APIs REST", "Banco de dados relacional e SQL", "Autenticação e segurança básica", "Versionamento com Git", "Testes automatizados"],
+      "nao_e_sobre": ["Design visual de telas", "Animações de interface"],
+      "tempo_estimado_fundamentos_horas": 140,
+      "primeiros_passos": [
+        "Escolher uma linguagem e dominar a sintaxe com exercícios pequenos",
+        "Construir uma API simples com 3 ou 4 rotas (ex.: lista de tarefas)",
+        "Conectar a API a um banco de dados e adicionar login"
+      ]
+    },
+    {
+      "id": "dados",
+      "nome": "Dados (análise e engenharia de dados)",
+      "resumo": "Coletar, organizar e analisar dados para apoiar decisões.",
+      "combina_com": "Quem gosta de estatística, de encontrar padrões e de contar histórias com números.",
+      "pre_requisitos": ["Lógica de programação básica", "Matemática do ensino médio", "Vontade de trabalhar com planilhas e consultas"],
+      "habilidades_chave": ["Python para dados (pandas)", "SQL", "Visualização de dados", "Estatística descritiva", "Noções de ETL", "Comunicação de resultados"],
+      "nao_e_sobre": ["Construir interfaces web", "Necessariamente machine learning avançado no começo"],
+      "tempo_estimado_fundamentos_horas": 130,
+      "primeiros_passos": [
+        "Aprender SQL fazendo consultas em um banco de exemplo",
+        "Aprender pandas limpando e resumindo um CSV público",
+        "Montar um painel simples com um gráfico que responda a uma pergunta de negócio"
+      ]
+    },
+    {
+      "id": "qa",
+      "nome": "QA / Testes de software",
+      "resumo": "Garantir a qualidade do software com testes manuais e automatizados.",
+      "combina_com": "Quem é detalhista, gosta de quebrar as coisas de propósito e de documentar bem.",
+      "pre_requisitos": ["Lógica de programação básica", "Atenção a detalhes", "Boa escrita"],
+      "habilidades_chave": ["Casos de teste e planos de teste", "Testes manuais exploratórios", "Automação de testes (ex.: com JavaScript ou Python)", "Noções de API e HTTP", "Versionamento com Git", "Bug report claro"],
+      "nao_e_sobre": ["Só 'clicar em botões' — envolve automação e raciocínio de risco"],
+      "tempo_estimado_fundamentos_horas": 100,
+      "primeiros_passos": [
+        "Aprender a escrever casos de teste para um site simples",
+        "Fazer testes exploratórios e reportar bugs com passos de reprodução",
+        "Automatizar um fluxo básico (ex.: login) com uma ferramenta de automação"
+      ]
+    },
+    {
+      "id": "infra-devops",
+      "nome": "Infraestrutura / DevOps (introdução)",
+      "resumo": "Automação de deploy, ambientes, monitoramento e nuvem.",
+      "combina_com": "Quem gosta de automação, linha de comando e de fazer sistemas rodarem de forma confiável.",
+      "pre_requisitos": ["Lógica de programação básica", "Conforto com terminal/linha de comando", "Já ter feito pelo menos um projeto de front ou back"],
+      "habilidades_chave": ["Linux e terminal", "Git", "Contêineres (Docker)", "CI/CD básico", "Uma nuvem (conceitos)", "Scripting"],
+      "nao_e_sobre": ["É uma trilha melhor como segundo passo, não como primeira porta de entrada"],
+      "tempo_estimado_fundamentos_horas": 120,
+      "primeiros_passos": [
+        "Praticar comandos de Linux e escrever scripts simples",
+        "Empacotar um projeto seu em um contêiner Docker",
+        "Configurar um pipeline que roda os testes a cada commit"
+      ]
+    }
+  ]
+}

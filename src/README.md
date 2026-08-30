@@ -1,31 +1,50 @@
-# Código da Aplicação
+# Código da Aplicação — CarreiraTron
 
-Esta pasta contém o código do seu agente financeiro.
+Protótipo de linha de comando (CLI) do assistente. Feito em Python, com recuperação simples
+sobre a base de conhecimento em [`../data/`](../data/) e resposta via API da OpenAI.
 
-## Estrutura Sugerida
+## Arquivos
 
 ```
 src/
-├── app.py              # Aplicação principal (Streamlit/Gradio)
-├── agente.py           # Lógica do agente
-├── config.py           # Configurações (API keys, etc.)
-└── requirements.txt    # Dependências
+├── app.py              # ponto de entrada: loop de conversa no terminal
+├── agent.py            # monta o prompt (CONTEXTO + PERFIL + PERGUNTA) e chama a IA (ou o mock)
+├── knowledge_base.py   # carrega data/ e faz a busca por palavra-chave (retrieval)
+└── prompts/
+    └── system_prompt.txt   # instruções de comportamento do agente
 ```
 
-## Exemplo de requirements.txt
+## Dependências
 
-```
-streamlit
-openai
-python-dotenv
-```
+Gerenciadas com [`uv`](https://docs.astral.sh/uv/) na raiz do projeto
+(`../pyproject.toml` + `../uv.lock`): `openai` e `python-dotenv`.
 
-## Como Rodar
+## Como rodar
+
+Na **raiz do projeto**:
 
 ```bash
-# Instalar dependências
-pip install -r requirements.txt
+# 1. instalar as dependências (cria o .venv automaticamente)
+uv sync
 
-# Rodar a aplicação
-streamlit run app.py
+# 2a. modo normal — precisa da chave da OpenAI
+cp .env.example .env      # e preencha OPENAI_API_KEY
+uv run python src/app.py
+
+# 2b. modo simulado — sem chave, sem internet (mostra os trechos da base)
+uv run python src/app.py --mock
+
+# 2c. uma pergunta só
+uv run python src/app.py --ask "Preciso de faculdade para ser dev?"
 ```
+
+Dentro do chat, digite `sair` para encerrar.
+
+## Como funciona (resumo)
+
+1. `knowledge_base.py` lê os 5 arquivos de `data/` e transforma cada item em um "trecho"
+   com rótulo de origem (ex.: `trilhas.json / dados`).
+2. A cada pergunta, ele seleciona os trechos com mais palavras-chave em comum.
+3. `agent.py` monta a mensagem para o modelo e aplica o `system_prompt.txt`, que obriga o
+   agente a responder **só** com o que está no contexto e a citar a fonte.
+4. `gpt-4o-mini` responde com `temperature` baixa. No modo `--mock`, nada é enviado à rede.

@@ -1,0 +1,124 @@
+{
+  "descricao": "Recursos de estudo por trilha e nível, usados pelo CarreiraTron. São descrições genéricas e fictícias de TIPOS de recurso (não links reais e não cursos de marcas específicas), criadas para o Lab DIO.",
+  "atualizado_em": "2026-08-29",
+  "observacao": "O assistente deve recomendar o TIPO de recurso e o tema, e orientar a pessoa a procurar uma opção gratuita e atual. Nunca inventar nome de curso, URL ou preço.",
+  "recursos": [
+    {
+      "trilha": "front-end",
+      "nivel": "fundamentos",
+      "tema": "HTML e CSS",
+      "formato": "Curso introdutório em vídeo + exercícios práticos",
+      "carga_horaria_estimada_horas": 30,
+      "objetivo": "Montar páginas estáticas com layout responsivo",
+      "criterio_conclusao": "Publicar 2 páginas responsivas feitas do zero"
+    },
+    {
+      "trilha": "front-end",
+      "nivel": "fundamentos",
+      "tema": "JavaScript básico",
+      "formato": "Curso em vídeo + lista de exercícios de lógica no navegador",
+      "carga_horaria_estimada_horas": 40,
+      "objetivo": "Manipular o DOM e tratar eventos",
+      "criterio_conclusao": "Adicionar interatividade a uma página estática já feita"
+    },
+    {
+      "trilha": "front-end",
+      "nivel": "intermediario",
+      "tema": "Framework de componentes (ex.: React)",
+      "formato": "Curso guiado por projeto",
+      "carga_horaria_estimada_horas": 50,
+      "objetivo": "Construir uma SPA pequena com componentes e estado",
+      "criterio_conclusao": "Entregar um projeto com pelo menos 3 telas e consumo de uma API"
+    },
+    {
+      "trilha": "back-end",
+      "nivel": "fundamentos",
+      "tema": "Linguagem de servidor (Python ou Node.js)",
+      "formato": "Curso de sintaxe + katas de programação",
+      "carga_horaria_estimada_horas": 40,
+      "objetivo": "Escrever funções, estruturas de dados e ler/escrever arquivos",
+      "criterio_conclusao": "Resolver 20 exercícios de lógica sem consultar solução"
+    },
+    {
+      "trilha": "back-end",
+      "nivel": "fundamentos",
+      "tema": "APIs REST",
+      "formato": "Curso guiado por projeto (API de tarefas)",
+      "carga_horaria_estimada_horas": 35,
+      "objetivo": "Criar rotas GET/POST/PUT/DELETE e tratar erros",
+      "criterio_conclusao": "API com 4 rotas rodando localmente e testada com um cliente HTTP"
+    },
+    {
+      "trilha": "back-end",
+      "nivel": "intermediario",
+      "tema": "Banco de dados relacional e SQL",
+      "formato": "Curso de SQL + integração com a API",
+      "carga_horaria_estimada_horas": 40,
+      "objetivo": "Modelar tabelas simples e fazer consultas com JOIN",
+      "criterio_conclusao": "Persistir os dados da API em um banco e adicionar autenticação"
+    },
+    {
+      "trilha": "dados",
+      "nivel": "fundamentos",
+      "tema": "SQL para análise",
+      "formato": "Curso interativo com banco de exemplo",
+      "carga_horaria_estimada_horas": 30,
+      "objetivo": "Filtrar, agrupar e cruzar tabelas",
+      "criterio_conclusao": "Responder 10 perguntas de negócio só com consultas SQL"
+    },
+    {
+      "trilha": "dados",
+      "nivel": "fundamentos",
+      "tema": "Python para dados (pandas)",
+      "formato": "Curso guiado + notebook com dataset público",
+      "carga_horaria_estimada_horas": 40,
+      "objetivo": "Limpar, transformar e resumir um conjunto de dados",
+      "criterio_conclusao": "Produzir um relatório curto com 3 gráficos a partir de um CSV real"
+    },
+    {
+      "trilha": "dados",
+      "nivel": "intermediario",
+      "tema": "Visualização e dashboards",
+      "formato": "Curso por projeto com ferramenta de BI ou biblioteca de gráficos",
+      "carga_horaria_estimada_horas": 35,
+      "objetivo": "Construir um painel que responde a uma pergunta clara",
+      "criterio_conclusao": "Publicar um dashboard com pelo menos um filtro interativo"
+    },
+    {
+      "trilha": "qa",
+      "nivel": "fundamentos",
+      "tema": "Fundamentos de teste de software",
+      "formato": "Curso teórico + exercícios de escrita de casos de teste",
+      "carga_horaria_estimada_horas": 25,
+      "objetivo": "Escrever casos de teste e planos de teste",
+      "criterio_conclusao": "Documentar um plano de teste para um site simples"
+    },
+    {
+      "trilha": "qa",
+      "nivel": "intermediario",
+      "tema": "Automação de testes",
+      "formato": "Curso por projeto com uma ferramenta de automação web",
+      "carga_horaria_estimada_horas": 40,
+      "objetivo": "Automatizar fluxos de UI e checagens de API",
+      "criterio_conclusao": "Automatizar o fluxo de login e um fluxo de cadastro"
+    },
+    {
+      "trilha": "infra-devops",
+      "nivel": "fundamentos",
+      "tema": "Linux, terminal e scripting",
+      "formato": "Curso prático de linha de comando",
+      "carga_horaria_estimada_horas": 30,
+      "objetivo": "Navegar, manipular arquivos e escrever scripts simples",
+      "criterio_conclusao": "Automatizar uma tarefa repetitiva com um script"
+    },
+    {
+      "trilha": "infra-devops",
+      "nivel": "intermediario",
+      "tema": "Contêineres e CI/CD",
+      "formato": "Curso por projeto com Docker e um serviço de CI",
+      "carga_horaria_estimada_horas": 40,
+      "objetivo": "Empacotar uma aplicação e rodar testes automaticamente a cada commit",
+      "criterio_conclusao": "Pipeline verde rodando os testes de um projeto seu"
+    }
+  ]
+}

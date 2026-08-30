@@ -1,0 +1,13 @@
+[project]
+name = "carreiratron"
+version = "0.1.0"
+description = "CarreiraTron — assistente virtual de orientação de carreira e estudos em tecnologia (Lab DIO)"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "openai>=1.40,<2",
+    "python-dotenv>=1.0,<2",
+]
+
+[tool.uv]
+package = false
