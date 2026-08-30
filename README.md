@@ -8,8 +8,8 @@ adaptado do exemplo financeiro para o tema de **orientação de carreira e estud
 
 ## O que é
 
-O **CarreiraTron** é um assistente de conversa (CLI) que ajuda uma pessoa **iniciante ou em
-transição de carreira** a dar o próximo passo rumo a uma vaga em tecnologia:
+O **CarreiraTron** é um assistente de conversa (web e linha de comando) que ajuda uma pessoa
+**iniciante ou em transição de carreira** a dar o próximo passo rumo a uma vaga em tecnologia:
 
 - **Escolher uma trilha** (front-end, back-end, dados, QA, infra) com base nos interesses e
   no tempo que ela tem;
