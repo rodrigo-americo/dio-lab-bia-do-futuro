@@ -1,149 +1,136 @@
-# 🤖 Agente Financeiro Inteligente com IA Generativa
+# 🤖 CarreiraTron — Assistente Virtual de Carreira e Estudos em Tecnologia
 
-## Contexto
-
-Os assistentes virtuais no setor financeiro estão evoluindo de simples chatbots reativos para **agentes inteligentes e proativos**. Neste desafio, você vai idealizar e prototipar um agente financeiro que utiliza IA Generativa para:
-
-- **Antecipar necessidades** ao invés de apenas responder perguntas
-- **Personalizar** sugestões com base no contexto de cada cliente
-- **Cocriar soluções** financeiras de forma consultiva
-- **Garantir segurança** e confiabilidade nas respostas (anti-alucinação)
-
-> [!TIP]
-> Na pasta [`examples/`](./examples/) você encontra referências de implementação para cada etapa deste desafio.
+Projeto do Lab da DIO **"Construa Seu Assistente Virtual Com Inteligência Artificial"**.
+Fork do [repositório base](https://github.com/digitalinnovationone/dio-lab-bia-do-futuro),
+adaptado do exemplo financeiro para o tema de **orientação de carreira e estudos**.
 
 ---
 
-## O Que Você Deve Entregar
+## O que é
 
-### 1. Documentação do Agente
+O **CarreiraTron** é um assistente de conversa (CLI) que ajuda uma pessoa **iniciante ou em
+transição de carreira** a dar o próximo passo rumo a uma vaga em tecnologia:
 
-Defina **o que** seu agente faz e **como** ele funciona:
+- **Escolher uma trilha** (front-end, back-end, dados, QA, infra) com base nos interesses e
+  no tempo que ela tem;
+- **Montar um plano de estudos semanal realista** (modelos de 5 a 20 h/semana);
+- **Preparar os próximos passos**: portfólio, primeira entrevista e dúvidas frequentes
+  (faculdade, CLT x PJ, inglês, certificações).
 
-- **Caso de Uso:** Qual problema financeiro ele resolve? (ex: consultoria de investimentos, planejamento de metas, alertas de gastos)
-- **Persona e Tom de Voz:** Como o agente se comporta e se comunica?
-- **Arquitetura:** Fluxo de dados e integração com a base de conhecimento
-- **Segurança:** Como evitar alucinações e garantir respostas confiáveis?
+Ele responde **apenas com base na base de conhecimento** em [`data/`](./data/), **cita a
+fonte** de cada resposta e, quando não tem a informação, **diz que não sabe** — não inventa
+curso, link, prazo ou salário.
 
-📄 **Template:** [`docs/01-documentacao-agente.md`](./docs/01-documentacao-agente.md)
-
----
-
-### 2. Base de Conhecimento
-
-Utilize os **dados mockados** disponíveis na pasta [`data/`](./data/) para alimentar seu agente:
-
-| Arquivo | Formato | Descrição |
-|---------|---------|-----------|
-| `transacoes.csv` | CSV | Histórico de transações do cliente |
-| `historico_atendimento.csv` | CSV | Histórico de atendimentos anteriores |
-| `perfil_investidor.json` | JSON | Perfil e preferências do cliente |
-| `produtos_financeiros.json` | JSON | Produtos e serviços disponíveis |
-
-Você pode adaptar ou expandir esses dados conforme seu caso de uso.
-
-📄 **Template:** [`docs/02-base-conhecimento.md`](./docs/02-base-conhecimento.md)
+**Para quem serve:** quem está migrando de outra área para tecnologia, estudantes ainda sem
+foco definido e autodidatas sem mentor. Perfil de referência dos testes: `Sam` (atendimento,
+~10 h/semana, gosta de lógica e de padrões).
 
 ---
 
-### 3. Prompts do Agente
+## Como rodar
 
-Documente os prompts que definem o comportamento do seu agente:
+Requisito: [`uv`](https://docs.astral.sh/uv/) instalado ([instruções](https://docs.astral.sh/uv/getting-started/installation/)).
 
-- **System Prompt:** Instruções gerais de comportamento e restrições
-- **Exemplos de Interação:** Cenários de uso com entrada e saída esperada
-- **Tratamento de Edge Cases:** Como o agente lida com situações limite
+```bash
+# 1. instalar as dependências (uv cria o .venv sozinho)
+uv sync
 
-📄 **Template:** [`docs/03-prompts.md`](./docs/03-prompts.md)
+# 2. chave da OpenAI (só para o modo normal)
+cp .env.example .env          # edite e preencha OPENAI_API_KEY
+```
 
----
+### Interface web (recomendada para a demo)
 
-### 4. Aplicação Funcional
+```bash
+uv run streamlit run src/web.py
+```
 
-Desenvolva um **protótipo funcional** do seu agente:
+Abre no navegador uma tela de chat. Na barra lateral há um botão **Modo simulado**
+para usar sem chave de API.
 
-- Chatbot interativo (sugestão: Streamlit, Gradio ou similar)
-- Integração com LLM (via API ou modelo local)
-- Conexão com a base de conhecimento
+### Linha de comando
 
-📁 **Pasta:** [`src/`](./src/)
+```bash
+uv run python src/app.py                 # modo normal (precisa da chave)
+uv run python src/app.py --mock          # modo simulado, sem chave nem internet
+uv run python src/app.py --ask "Preciso de faculdade para ser dev?"   # pergunta única
+```
 
----
+Dentro do chat da CLI, digite `sair` para encerrar. O modelo padrão é `gpt-4o-mini`
+(barato); dá para trocar com a variável `OPENAI_MODEL`.
 
-### 5. Avaliação e Métricas
+### Exemplos de conversa
 
-Descreva como você avalia a qualidade do seu agente:
-
-**Métricas Sugeridas:**
-- Precisão/assertividade das respostas
-- Taxa de respostas seguras (sem alucinações)
-- Coerência com o perfil do cliente
-
-📄 **Template:** [`docs/04-metricas.md`](./docs/04-metricas.md)
-
----
-
-### 6. Pitch
-
-Grave um **pitch de 3 minutos** (estilo elevador) apresentando:
-
-- Qual problema seu agente resolve?
-- Como ele funciona na prática?
-- Por que essa solução é inovadora?
-
-📄 **Template:** [`docs/05-pitch.md`](./docs/05-pitch.md)
+| Pergunta | O que o agente faz |
+|----------|--------------------|
+| "Gosto de achar padrões e não curto design. Tenho 10h/semana. Qual trilha?" | Sugere **Dados**, cita `trilhas.json`, encaixa o plano de 10h e dá um próximo passo |
+| "Já decidi back-end e só tenho 5 horas por semana. Como divido esse tempo?" | Usa o modelo de rotina de **5h** de `planos_estudo.csv` |
+| "Quanto ganha um dev júnior em São Paulo?" | **Não inventa** — diz que não tem essa informação e aponta onde procurar |
+| "Qual a previsão do tempo amanhã?" | Responde que está **fora do escopo** |
 
 ---
 
-## Ferramentas Sugeridas
+## Como os 6 passos do desafio foram cumpridos
 
-Todas as ferramentas abaixo possuem versões gratuitas:
+| Passo | Entrega | Onde |
+|-------|---------|------|
+| 1. Documentação do Agente | Caso de uso, persona, arquitetura (diagrama Mermaid), estratégias anti-alucinação | [`docs/01-documentacao-agente.md`](./docs/01-documentacao-agente.md) |
+| 2. Base de Conhecimento | 5 arquivos em `data/` (trilhas, recursos, planos, FAQ, perfil) + estratégia de integração e limitações | [`docs/02-base-conhecimento.md`](./docs/02-base-conhecimento.md) · [`data/`](./data/) |
+| 3. Prompts do Agente | System prompt final + racional, template de mensagem, few-shot e edge cases | [`docs/03-prompts.md`](./docs/03-prompts.md) · [`src/prompts/system_prompt.txt`](./src/prompts/system_prompt.txt) |
+| 4. Aplicação Funcional | Interface web (Streamlit) + CLI em Python, ambas com retrieval por palavra-chave + API OpenAI e modo simulado | [`src/`](./src/) |
+| 5. Avaliação e Métricas | Roteiro de 10 testes, métricas (assertividade, segurança, aderência, utilidade) e feedback de pessoas | [`docs/04-metricas.md`](./docs/04-metricas.md) |
+| 6. Pitch | Roteiro de ~3 min para gravação em vídeo + checklist | [`docs/05-pitch.md`](./docs/05-pitch.md) |
 
-| Categoria | Ferramentas |
-|-----------|-------------|
-| **LLMs** | [ChatGPT](https://chat.openai.com/), [Copilot](https://copilot.microsoft.com/), [Gemini](https://gemini.google.com/), [Claude](https://claude.ai/), [Ollama](https://ollama.ai/) |
-| **Desenvolvimento** | [Streamlit](https://streamlit.io/), [Gradio](https://www.gradio.app/), [Google Colab](https://colab.research.google.com/) |
-| **Orquestração** | [LangChain](https://www.langchain.com/), [LangFlow](https://www.langflow.org/), [CrewAI](https://www.crewai.com/) |
-| **Diagramas** | [Mermaid](https://mermaid.js.org/), [Draw.io](https://app.diagrams.net/), [Excalidraw](https://excalidraw.com/) |
+🎥 **Vídeo do pitch:** https://drive.google.com/file/d/1zkdIdTIiQ82tIemzr3JIorRCbMYpRlKW/view?usp=sharing
 
 ---
 
-## Estrutura do Repositório
+## Estrutura do repositório
 
 ```
-📁 lab-agente-financeiro/
+desafio_dio/  (fork de dio-lab-bia-do-futuro)
+├── README.md                     # este arquivo
+├── pyproject.toml / uv.lock      # dependências (uv): openai, python-dotenv
+├── .env.example                  # modelo — a chave real fica só no .env (git-ignorado)
 │
-├── 📄 README.md
+├── data/                         # base de conhecimento (dados fictícios)
+│   ├── trilhas.json              # trilhas de carreira e habilidades
+│   ├── cursos_recursos.json      # tipos de recurso de estudo por trilha/nível
+│   ├── planos_estudo.csv         # rotinas semanais por horas disponíveis
+│   ├── faq_carreira.md           # perguntas frequentes (com id por item)
+│   └── perfil_usuario_exemplo.json  # persona fictícia "Sam" para os testes
 │
-├── 📁 data/                          # Dados mockados para o agente
-│   ├── historico_atendimento.csv     # Histórico de atendimentos (CSV)
-│   ├── perfil_investidor.json        # Perfil do cliente (JSON)
-│   ├── produtos_financeiros.json     # Produtos disponíveis (JSON)
-│   └── transacoes.csv                # Histórico de transações (CSV)
+├── docs/                         # documentação dos 6 passos (01 a 05)
 │
-├── 📁 docs/                          # Documentação do projeto
-│   ├── 01-documentacao-agente.md     # Caso de uso e arquitetura
-│   ├── 02-base-conhecimento.md       # Estratégia de dados
-│   ├── 03-prompts.md                 # Engenharia de prompts
-│   ├── 04-metricas.md                # Avaliação e métricas
-│   └── 05-pitch.md                   # Roteiro do pitch
+├── src/
+│   ├── web.py                    # interface web (Streamlit)
+│   ├── app.py                    # CLI: loop de conversa no terminal
+│   ├── agent.py                  # monta o prompt e chama a IA (ou o mock)
+│   ├── knowledge_base.py         # carrega data/ e faz o retrieval
+│   └── prompts/system_prompt.txt # instruções de comportamento do agente
 │
-├── 📁 src/                           # Código da aplicação
-│   └── app.py                        # (exemplo de estrutura)
-│
-├── 📁 assets/                        # Imagens e diagramas
-│   └── ...
-│
-└── 📁 examples/                      # Referências e exemplos
-    └── README.md
+├── assets/                       # espaço para diagramas e screenshots
+└── examples/                     # referências do repositório base
 ```
 
 ---
 
-## Dicas Finais
+## Limitações (por decisão de projeto)
 
-1. **Comece pelo prompt:** Um bom system prompt é a base de um agente eficaz
-2. **Use os dados mockados:** Eles garantem consistência e evitam problemas com dados sensíveis
-3. **Foque na segurança:** No setor financeiro, evitar alucinações é crítico
-4. **Teste cenários reais:** Simule perguntas que um cliente faria de verdade
-5. **Seja direto no pitch:** 3 minutos passam rápido, vá ao ponto
+Protótipo simples, não produção:
+
+- Base de conhecimento pequena (5 trilhas, ~13 recursos, 11 FAQs) e com dados fictícios.
+- Retrieval por **palavra-chave**, sem embeddings — pode trazer um trecho irrelevante no
+  contexto de vez em quando (o system prompt mitiga isso na resposta final).
+- Sem dados dinâmicos: nada de vagas reais, salários ou datas de curso.
+- Perfil da pessoa é fixo (arquivo de exemplo), não preenchido em conversa.
+
+Próximos passos possíveis estão listados em [`docs/04-metricas.md`](./docs/04-metricas.md).
+
+---
+
+## Créditos
+
+Desafio **DIO** — [Lab: Construa Seu Assistente Virtual Com Inteligência Artificial](https://github.com/digitalinnovationone/dio-lab-bia-do-futuro).
+Estrutura de pastas e templates de `docs/` vêm do repositório base; a base de conhecimento,
+os prompts, a aplicação e a avaliação são deste projeto.

@@ -1,0 +1,20 @@
+# Segredos — nunca commitar
+.env
+
+# Plano de trabalho local (não faz parte da entrega)
+PLANO.md
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+
+# Ferramentas / editores
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.idea/
+.vscode/
+.DS_Store

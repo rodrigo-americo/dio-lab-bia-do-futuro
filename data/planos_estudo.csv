@@ -1,0 +1,6 @@
+horas_por_semana,perfil_tempo,dias_sugeridos,bloco_por_dia_min,distribuicao,ritmo_esperado,observacao
+5,muito enxuto,"3 dias na semana",60,"2 dias de conteúdo novo + 1 dia de prática/revisão","fundamentos de uma trilha em ~5 a 6 meses","bom para quem trabalha em tempo integral; priorizar consistência acima de volume"
+8,enxuto,"4 dias na semana",60,"2 dias de conteúdo novo + 2 dias de prática (exercícios ou projeto)","fundamentos em ~4 meses","reservar 1 desses dias só para revisar o que não ficou claro"
+10,moderado,"4 a 5 dias na semana",75,"2 dias de conteúdo novo + 2 dias de projeto + 1 dia de revisão/portfólio","fundamentos em ~3 meses","alternar semanas de teoria com semanas de projeto"
+15,dedicado,"5 dias na semana",90,"2 dias de conteúdo novo + 2 dias de projeto + 1 dia de revisão e escrita (README, anotações)","fundamentos em ~2 meses","incluir 1 pausa real por semana para não saturar"
+20,intensivo,"5 a 6 dias na semana",120,"2 a 3 dias de conteúdo novo + 2 dias de projeto + 1 dia de revisão + tempo para comunidade/dúvidas","fundamentos em ~6 a 8 semanas","ritmo de transição acelerada; monitorar cansaço e qualidade do sono"
