@@ -60,12 +60,13 @@
 - [ ] Mostrar pelo menos um caso de "não sei" (anti-alucinação)
 - [ ] Diferencial explicado no fim
 - [ ] Áudio limpo; se usar o terminal, aumentar a fonte; se usar a web, zoom do navegador em ~110–125%
-- [ ] Link do vídeo colado abaixo e no README
+- [x] Link do vídeo colado abaixo e no README
 
 ---
 
 ## Link do Vídeo
 
-> Subir no YouTube (não listado) ou Google Drive e colar o link aqui.
+🎥 https://drive.google.com/file/d/1zkdIdTIiQ82tIemzr3JIorRCbMYpRlKW/view?usp=sharing
 
-[a gravar]
+> Confirme que o compartilhamento do arquivo no Drive está como **"Qualquer pessoa com o link"**
+> para o avaliador conseguir abrir.

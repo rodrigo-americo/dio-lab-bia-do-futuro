@@ -81,7 +81,7 @@ Dentro do chat da CLI, digite `sair` para encerrar. O modelo padrão é `gpt-4o-
 | 5. Avaliação e Métricas | Roteiro de 10 testes, métricas (assertividade, segurança, aderência, utilidade) e feedback de pessoas | [`docs/04-metricas.md`](./docs/04-metricas.md) |
 | 6. Pitch | Roteiro de ~3 min para gravação em vídeo + checklist | [`docs/05-pitch.md`](./docs/05-pitch.md) |
 
-🎥 **Vídeo do pitch:** _(a gravar — link será adicionado aqui e em `docs/05-pitch.md`)_
+🎥 **Vídeo do pitch:** https://drive.google.com/file/d/1zkdIdTIiQ82tIemzr3JIorRCbMYpRlKW/view?usp=sharing
 
 ---
 
