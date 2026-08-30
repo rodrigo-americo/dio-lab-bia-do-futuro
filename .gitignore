@@ -1,6 +1,9 @@
 # Segredos — nunca commitar
 .env
 
+# Plano de trabalho local (não faz parte da entrega)
+PLANO.md
+
 # Python
 __pycache__/
 *.py[cod]

@@ -80,7 +80,6 @@ Dentro do chat, digite `sair` para encerrar. O modelo padrão é `gpt-4o-mini`
 ```
 desafio_dio/  (fork de dio-lab-bia-do-futuro)
 ├── README.md                     # este arquivo
-├── PLANO.md                      # plano de execução do desafio
 ├── pyproject.toml / uv.lock      # dependências (uv): openai, python-dotenv
 ├── .env.example                  # modelo — a chave real fica só no .env (git-ignorado)
 │

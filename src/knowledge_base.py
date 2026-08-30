@@ -33,12 +33,23 @@ def _normalize(text: str) -> str:
     return text.lower()
 
 
+_NUM_EXTENSO = {
+    "uma": "1", "duas": "2", "tres": "3", "quatro": "4", "cinco": "5",
+    "seis": "6", "sete": "7", "oito": "8", "nove": "9", "dez": "10",
+    "doze": "12", "quinze": "15", "vinte": "20",
+}
+
+
 def _tokens(text: str) -> set[str]:
     norm = _normalize(text)
     words = re.findall(r"[a-z0-9]+", norm)
     toks = {w for w in words if len(w) > 2 and w not in _STOPWORDS}
-    # "5h", "10 horas", "20h/semana" -> token "<n>h", para casar com o rótulo do CSV.
-    for n in re.findall(r"(\d{1,2})\s*h(?:oras?)?\b", norm):
+    # Normaliza referências a horas/semana para o token "<n>h", para casar com o
+    # rótulo do CSV de planos: "5h", "5 horas", "cinco horas por semana"...
+    norm_num = norm
+    for extenso, digito in _NUM_EXTENSO.items():
+        norm_num = re.sub(rf"\b{extenso}\b", digito, norm_num)
+    for n in re.findall(r"(\d{1,2})\s*h(?:oras?)?\b", norm_num):
         toks.add(f"{n}h")
     return toks
 
@@ -61,10 +72,13 @@ class Doc:
         )
 
     def score(self, query_tokens: set[str]) -> int:
-        # Palavra que casa com o rótulo da fonte (ex.: "back-end", "5h") pesa o dobro.
+        # Palavra que casa com o rótulo da fonte (ex.: "back-end") pesa o dobro.
         base = len(self._tokens & query_tokens)
         boost = len(self._source_tokens & query_tokens)
-        return base + boost
+        # Um token de horas ("5h", "10h"...) no rótulo é um sinal muito específico
+        # (é o identificador de uma linha do planos_estudo.csv): peso extra.
+        hour_hit = len({t for t in self._source_tokens & query_tokens if t.endswith("h") and t[:-1].isdigit()})
+        return base + boost + 2 * hour_hit
 
 
 class KnowledgeBase:

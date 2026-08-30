@@ -230,4 +230,11 @@ recente e com exercícios; depois me diga qual pegou que eu te ajudo a encaixar 
   genérico do template deixava margem para o modelo responder de memória.
 - **v1:** adicionada a exigência de terminar sempre com "um próximo passo concreto e pequeno"
   depois de perceber que respostas sem call-to-action deixavam o público-alvo travado.
-- _(próximas observações após a rodada de testes do Passo 5)_
+- **Rodada de testes (Passo 5, 2026-08-29):** o system prompt não foi alterado, mas os
+  testes revelaram dois pontos (ver [`04-metricas.md`](./04-metricas.md)):
+  1. quando o retrieval não entrega o trecho certo, o modelo preenche a lacuna com números
+     plausíveis — foi corrigido no **retrieval** (`knowledge_base.py`), não no prompt;
+  2. a regra "faça 1–2 perguntas antes de responder" quase nunca dispara porque o perfil
+     `Sam` está sempre no contexto. Ajuste candidato para a v2: instruir o agente a
+     confirmar a trilha com a pessoa mesmo tendo o perfil, e reforçar "não cite exemplos
+     (ferramentas, sites) que não estejam no CONTEXTO".
