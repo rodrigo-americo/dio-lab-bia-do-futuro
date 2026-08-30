@@ -253,6 +253,23 @@ créditos (Lab DIO + link do repo base).
 
 ## 11. Decisões — status
 
+## STATUS DE EXECUÇÃO (2026-08-29)
+
+- [x] Fork + clone + branch `entrega/carreiratron` + 1º commit
+- [x] Passo 2 — base de conhecimento (`data/`: 5 arquivos novos; financeiros removidos)
+- [x] Passo 3 — prompts (`docs/03-prompts.md` + `src/prompts/system_prompt.txt`)
+- [x] Passo 1 — documentação (`docs/01-documentacao-agente.md` + `assets/arquitetura.md`)
+- [x] Passo 4 — app CLI (`src/app.py`, `agent.py`, `knowledge_base.py`) + `pyproject.toml` + `uv.lock` — **testado no modo `--mock`**
+- [x] Passo 5 — `docs/04-metricas.md` (roteiro de 10 testes montado; tabelas a preencher)
+- [x] Passo 6 — `docs/05-pitch.md` (roteiro pronto; vídeo a gravar)
+- [x] README.md principal reescrito
+- [ ] **Rodar o app no modo normal com `OPENAI_API_KEY`** (só o usuário tem a chave)
+- [ ] **Preencher as tabelas de teste** em `docs/04-metricas.md` com as respostas reais
+- [ ] **Gravar o vídeo do pitch** e colar o link em `README.md` e `docs/05-pitch.md`
+- [ ] `git push -u origin entrega/carreiratron` e submeter o link na plataforma DIO
+
+---
+
 | # | Decisão | Status |
 |---|---------|--------|
 | 1 | Tema: orientação de carreira e estudos em tecnologia | **DECIDIDO** |
