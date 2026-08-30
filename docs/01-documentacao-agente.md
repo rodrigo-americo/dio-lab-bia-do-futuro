@@ -73,12 +73,14 @@ lista, nunca um texto longo.
 
 ```mermaid
 flowchart TD
-    A[Pessoa usuária] -->|Pergunta no terminal| B[Aplicação CLI - app.py]
-    B --> G[knowledge_base.py<br/>carrega e busca em data/]
-    G -->|Trechos relevantes + perfil| B
-    B -->|CONTEXTO + PERFIL + PERGUNTA| C[agent.py]
+    A[Pessoa usuária] -->|Pergunta| B{Interface}
+    B -->|web.py| B1[Streamlit no navegador]
+    B -->|app.py| B2[Linha de comando]
+    B1 --> G[knowledge_base.py<br/>carrega e busca em data/]
+    B2 --> G
+    G -->|Trechos relevantes + perfil| C[agent.py]
     C -->|modo normal| D[API OpenAI - gpt-4o-mini]
-    C -->|modo --mock| E[Fallback local<br/>mostra os trechos da base]
+    C -->|modo simulado| E[Fallback local<br/>mostra os trechos da base]
     D --> F[Resposta ancorada na base]
     E --> F
     F --> A
@@ -87,25 +89,26 @@ flowchart TD
 ```
 
 ### Fluxo em palavras
-1. A pessoa digita uma pergunta no terminal (`app.py`).
+1. A pessoa faz uma pergunta — pela tela web (`web.py`) ou pelo terminal (`app.py`).
 2. `knowledge_base.py` procura por palavras-chave da pergunta nos arquivos de `data/` e
    devolve os trechos mais relevantes, com a origem (arquivo / `id`).
 3. `agent.py` monta a mensagem (`CONTEXTO` + `PERFIL` + `PERGUNTA`) e junta o system prompt.
 4. **Modo normal:** envia para a API da OpenAI (`gpt-4o-mini`, `temperature` baixa).
-   **Modo `--mock`:** sem chave/crédito, responde localmente só com os trechos da base + aviso.
-5. A resposta volta para o terminal.
+   **Modo simulado:** sem chave/crédito, responde localmente só com os trechos da base + aviso.
+5. A resposta volta para a interface, junto com a lista de fontes usadas.
 
 ### Componentes
 
 | Componente | Descrição |
 |------------|-----------|
-| Interface | Aplicação de linha de comando (CLI) em Python — `src/app.py` |
+| Interface web | `src/web.py` — chat em Streamlit no navegador (recomendada para a demo) |
+| Interface CLI | `src/app.py` — mesma conversa no terminal; flags `--mock` e `--ask` |
 | Recuperação | `src/knowledge_base.py` — carrega `data/` e faz busca textual por palavra-chave |
 | Orquestração / Prompt | `src/agent.py` — monta o contexto e aplica `src/prompts/system_prompt.txt` |
 | LLM | OpenAI `gpt-4o-mini` via API (`temperature` 0–0.3) |
 | Base de Conhecimento | 5 arquivos JSON/CSV/Markdown em `data/` (ver [`02-base-conhecimento.md`](./02-base-conhecimento.md)) |
 | Validação / Anti-alucinação | Regras do system prompt: responder só pelo `CONTEXTO`, citar a fonte, admitir quando não sabe |
-| Modo de contingência | `--mock`: roda sem chave de API, útil na avaliação sem internet/crédito |
+| Modo de contingência | Modo simulado (`--mock` na CLI, botão na web): roda sem chave de API, útil na avaliação sem internet/crédito |
 
 ---
 

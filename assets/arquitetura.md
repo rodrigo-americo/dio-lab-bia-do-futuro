@@ -4,12 +4,14 @@ Diagrama do fluxo de uma pergunta, do terminal até a resposta.
 
 ```mermaid
 flowchart TD
-    A[Pessoa usuária] -->|Pergunta no terminal| B[app.py<br/>CLI]
-    B --> G[knowledge_base.py<br/>carrega e busca em data/]
-    G -->|Trechos relevantes + fonte + perfil| B
-    B -->|CONTEXTO + PERFIL + PERGUNTA| C[agent.py]
+    A[Pessoa usuária] -->|Pergunta| B{Interface}
+    B -->|web.py| W[Streamlit no navegador]
+    B -->|app.py| T[Terminal / CLI]
+    W --> G[knowledge_base.py<br/>carrega e busca em data/]
+    T --> G
+    G -->|Trechos relevantes + fonte + perfil| C[agent.py]
     C -->|modo normal| D[API OpenAI<br/>gpt-4o-mini · temperature 0.2]
-    C -->|modo --mock| E[Fallback local<br/>mostra os trechos da base]
+    C -->|modo simulado| E[Fallback local<br/>mostra os trechos da base]
     D --> F[Resposta ancorada na base]
     E --> F
     F --> A
@@ -22,7 +24,8 @@ flowchart TD
 
 | Componente | Arquivo | Papel |
 |------------|---------|-------|
-| Interface | `src/app.py` | Loop de conversa no terminal; flags `--mock` e `--ask` |
+| Interface web | `src/web.py` | Chat em Streamlit no navegador; toggle de modo simulado |
+| Interface CLI | `src/app.py` | Mesma conversa no terminal; flags `--mock` e `--ask` |
 | Recuperação | `src/knowledge_base.py` | Lê `data/`, quebra em trechos com rótulo de origem, busca por palavra-chave (com peso extra para o rótulo da fonte) |
 | Orquestração / Prompt | `src/agent.py` | Monta `CONTEXTO + PERFIL + PERGUNTA` e aplica o system prompt |
 | LLM | OpenAI `gpt-4o-mini` | Gera a resposta (só no modo normal) |

@@ -60,10 +60,18 @@ class Agent:
         return OpenAI(api_key=api_key)
 
     def answer(self, question: str) -> str:
+        """Resposta em texto (usada pela CLI)."""
+        return self.answer_with_sources(question)[0]
+
+    def answer_with_sources(self, question: str) -> tuple[str, list[str]]:
+        """Como `answer`, mas devolve também a lista de fontes recuperadas da base.
+
+        A interface web usa isso para mostrar de onde veio a resposta.
+        """
         user_message, sources = build_user_message(self.kb, question)
 
         if self.mock:
-            return self._mock_answer(sources, user_message)
+            return self._mock_answer(sources, user_message), sources
 
         try:
             resp = self._client.chat.completions.create(
@@ -75,13 +83,14 @@ class Agent:
                     {"role": "user", "content": user_message},
                 ],
             )
-            return resp.choices[0].message.content.strip()
+            return resp.choices[0].message.content.strip(), sources
         except Exception as exc:  # rede, crédito, chave inválida, etc.
-            return (
+            msg = (
                 "Não consegui falar com a API da OpenAI agora "
                 f"({exc.__class__.__name__}: {exc}).\n"
-                "Você pode tentar de novo ou rodar em modo simulado com --mock."
+                "Você pode tentar de novo ou rodar em modo simulado (--mock)."
             )
+            return msg, sources
 
     def _mock_answer(self, sources: list[str], user_message: str) -> str:
         if not sources:

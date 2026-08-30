@@ -35,18 +35,28 @@ Requisito: [`uv`](https://docs.astral.sh/uv/) instalado ([instruções](https://
 # 1. instalar as dependências (uv cria o .venv sozinho)
 uv sync
 
-# 2a. MODO NORMAL — usa a API da OpenAI (precisa de chave)
+# 2. chave da OpenAI (só para o modo normal)
 cp .env.example .env          # edite e preencha OPENAI_API_KEY
-uv run python src/app.py
-
-# 2b. MODO SIMULADO — sem chave e sem internet (mostra os trechos da base)
-uv run python src/app.py --mock
-
-# 2c. uma pergunta só e sai
-uv run python src/app.py --ask "Preciso de faculdade para ser dev?"
 ```
 
-Dentro do chat, digite `sair` para encerrar. O modelo padrão é `gpt-4o-mini`
+### Interface web (recomendada para a demo)
+
+```bash
+uv run streamlit run src/web.py
+```
+
+Abre no navegador uma tela de chat. Na barra lateral há um botão **Modo simulado**
+para usar sem chave de API.
+
+### Linha de comando
+
+```bash
+uv run python src/app.py                 # modo normal (precisa da chave)
+uv run python src/app.py --mock          # modo simulado, sem chave nem internet
+uv run python src/app.py --ask "Preciso de faculdade para ser dev?"   # pergunta única
+```
+
+Dentro do chat da CLI, digite `sair` para encerrar. O modelo padrão é `gpt-4o-mini`
 (barato); dá para trocar com a variável `OPENAI_MODEL`.
 
 ### Exemplos de conversa
@@ -67,7 +77,7 @@ Dentro do chat, digite `sair` para encerrar. O modelo padrão é `gpt-4o-mini`
 | 1. Documentação do Agente | Caso de uso, persona, arquitetura (diagrama Mermaid), estratégias anti-alucinação | [`docs/01-documentacao-agente.md`](./docs/01-documentacao-agente.md) |
 | 2. Base de Conhecimento | 5 arquivos em `data/` (trilhas, recursos, planos, FAQ, perfil) + estratégia de integração e limitações | [`docs/02-base-conhecimento.md`](./docs/02-base-conhecimento.md) · [`data/`](./data/) |
 | 3. Prompts do Agente | System prompt final + racional, template de mensagem, few-shot e edge cases | [`docs/03-prompts.md`](./docs/03-prompts.md) · [`src/prompts/system_prompt.txt`](./src/prompts/system_prompt.txt) |
-| 4. Aplicação Funcional | CLI em Python com retrieval por palavra-chave + API OpenAI + modo `--mock` | [`src/`](./src/) |
+| 4. Aplicação Funcional | Interface web (Streamlit) + CLI em Python, ambas com retrieval por palavra-chave + API OpenAI e modo simulado | [`src/`](./src/) |
 | 5. Avaliação e Métricas | Roteiro de 10 testes, métricas (assertividade, segurança, aderência, utilidade) e feedback de pessoas | [`docs/04-metricas.md`](./docs/04-metricas.md) |
 | 6. Pitch | Roteiro de ~3 min para gravação em vídeo + checklist | [`docs/05-pitch.md`](./docs/05-pitch.md) |
 
@@ -93,6 +103,7 @@ desafio_dio/  (fork de dio-lab-bia-do-futuro)
 ├── docs/                         # documentação dos 6 passos (01 a 05)
 │
 ├── src/
+│   ├── web.py                    # interface web (Streamlit)
 │   ├── app.py                    # CLI: loop de conversa no terminal
 │   ├── agent.py                  # monta o prompt e chama a IA (ou o mock)
 │   ├── knowledge_base.py         # carrega data/ e faz o retrieval

@@ -14,6 +14,9 @@ Eles substituem os arquivos do exemplo financeiro do repositório base.
 | [`faq_carreira.md`](../data/faq_carreira.md) | Markdown | Perguntas frequentes com resposta curta e honesta (faculdade, portfólio, tempo até a primeira vaga, CLT x PJ, inglês, certificações, entrevista...). Cada item tem um `id` para o agente citar como fonte. |
 | [`perfil_usuario_exemplo.json`](../data/perfil_usuario_exemplo.json) | JSON | Persona fictícia (`Sam`) usada para manter as conversas de teste consistentes: situação atual, objetivo, interesses, tempo disponível, conhecimento atual e restrições. |
 
+> As duas interfaces (web `src/web.py` e CLI `src/app.py`) usam exatamente esta mesma
+> estratégia — só muda a forma de mostrar a resposta.
+
 ## Estratégia de integração
 
 1. **Carregamento:** a aplicação lê os cinco arquivos de `data/` uma vez, no início da sessão.

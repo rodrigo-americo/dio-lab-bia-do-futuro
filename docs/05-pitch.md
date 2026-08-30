@@ -27,7 +27,8 @@
 > curso, link, prazo ou salário."
 
 ### 3. Demonstração (~1 min)
-> Gravar o terminal rodando `uv run python src/app.py` e mostrar três perguntas:
+> Gravar a interface web (`uv run streamlit run src/web.py`) e mostrar três perguntas
+> (ou o terminal com `uv run python src/app.py`, se preferir):
 >
 > 1. **Escolha de trilha:** "Gosto de achar padrões e não curto design. Tenho 10h por
 >    semana. Qual trilha?" → o agente sugere Dados, cita `trilhas.json`, encaixa o plano de
@@ -58,7 +59,7 @@
 - [ ] Solução demonstrada na prática (gravação de tela do app rodando)
 - [ ] Mostrar pelo menos um caso de "não sei" (anti-alucinação)
 - [ ] Diferencial explicado no fim
-- [ ] Áudio limpo e terminal com fonte legível (aumentar o zoom do terminal)
+- [ ] Áudio limpo; se usar o terminal, aumentar a fonte; se usar a web, zoom do navegador em ~110–125%
 - [ ] Link do vídeo colado abaixo e no README
 
 ---

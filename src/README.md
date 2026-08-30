@@ -7,17 +7,21 @@ sobre a base de conhecimento em [`../data/`](../data/) e resposta via API da Ope
 
 ```
 src/
-├── app.py              # ponto de entrada: loop de conversa no terminal
+├── web.py              # interface web (Streamlit) — recomendada para a demo
+├── app.py              # interface de linha de comando (CLI)
 ├── agent.py            # monta o prompt (CONTEXTO + PERFIL + PERGUNTA) e chama a IA (ou o mock)
 ├── knowledge_base.py   # carrega data/ e faz a busca por palavra-chave (retrieval)
 └── prompts/
     └── system_prompt.txt   # instruções de comportamento do agente
 ```
 
+`web.py` e `app.py` são só camadas de interface — toda a lógica está em
+`agent.py` + `knowledge_base.py`.
+
 ## Dependências
 
 Gerenciadas com [`uv`](https://docs.astral.sh/uv/) na raiz do projeto
-(`../pyproject.toml` + `../uv.lock`): `openai` e `python-dotenv`.
+(`../pyproject.toml` + `../uv.lock`): `openai`, `python-dotenv` e `streamlit`.
 
 ## Como rodar
 
@@ -27,18 +31,27 @@ Na **raiz do projeto**:
 # 1. instalar as dependências (cria o .venv automaticamente)
 uv sync
 
-# 2a. modo normal — precisa da chave da OpenAI
+# 2. chave da OpenAI (só para o modo normal)
 cp .env.example .env      # e preencha OPENAI_API_KEY
-uv run python src/app.py
-
-# 2b. modo simulado — sem chave, sem internet (mostra os trechos da base)
-uv run python src/app.py --mock
-
-# 2c. uma pergunta só
-uv run python src/app.py --ask "Preciso de faculdade para ser dev?"
 ```
 
-Dentro do chat, digite `sair` para encerrar.
+### Interface web
+
+```bash
+uv run streamlit run src/web.py
+```
+
+Tela de chat no navegador. Botão **Modo simulado** na barra lateral para rodar sem chave.
+
+### Linha de comando
+
+```bash
+uv run python src/app.py                 # modo normal (precisa da chave)
+uv run python src/app.py --mock          # modo simulado, sem chave nem internet
+uv run python src/app.py --ask "Preciso de faculdade para ser dev?"   # pergunta única
+```
+
+Dentro do chat da CLI, digite `sair` para encerrar.
 
 ## Como funciona (resumo)
 
